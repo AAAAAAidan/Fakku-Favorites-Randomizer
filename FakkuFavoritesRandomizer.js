@@ -50,7 +50,7 @@ if (pageMeta.length > 0)
 
 function randomizeFavorites()
 {
-    var counter = 0;
+    var chapterCounter = 0;
     var log = "";
 
     var currentTabContent = document.getElementsByClassName("tab-content active")[0];
@@ -68,7 +68,7 @@ function randomizeFavorites()
             url: url,
             onload: function(response)
             {
-                var loopCount = 0;
+                var loopCounter = 0;
 
                 do
                 {
@@ -86,12 +86,12 @@ function randomizeFavorites()
                     chapterThumb.src = "https:" + chapterThumb.getAttribute("data-src");
 
                     // To avoid infinite loops that occur when retrieving a page where all chapters have already been added
-                    loopCount++;
-                    if (loopCount > 2) break;
+                    loopCounter++;
+                    if (loopCounter > 2) break;
                 }
                 while (log.indexOf(chapterId) != -1); // Repeat if chapter has already been added
 
-                currentChapters[counter++].innerHTML = chapter.innerHTML;
+                currentChapters[chapterCounter++].innerHTML = chapter.innerHTML;
                 log += chapterId + "\n";
             }
         });
