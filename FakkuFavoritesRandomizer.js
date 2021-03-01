@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         FAKKU! Favorites Randomizer
 // @namespace    https://greasyfork.org/users/559356
-// @version      1
-// @description  Randomize favorites
+// @version      1.0.1
+// @description  Randomize favorite chapters
 // @author       Aidan
 // @match        https://www.fakku.net/users/*/favorites*
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
-var pageMeta = document.getElementsByClassName("pagination-meta hidden-mobile");
+var pageMeta = document.getElementsByClassName("pagination-2020");
 
 if (pageMeta.length > 0)
 {
@@ -26,7 +26,7 @@ if (pageMeta.length > 0)
 
     var buttonHtml = "<button id='userBtn' title='Randomize Favorites' style='" + buttonCss + "'></button>";
 
-    document.getElementsByClassName("pagination-meta hidden-mobile")[0].innerHTML += buttonHtml;
+    document.getElementsByClassName("pagination-results")[0].innerHTML += buttonHtml;
     document.getElementById("userBtn").addEventListener("click", randomizeFavorites);
 
     var currentUrl = window.location.href;
