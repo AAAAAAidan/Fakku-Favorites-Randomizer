@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         FAKKU! Favorites Randomizer
+// @name         Fakku Favorites Randomizer
 // @namespace    https://greasyfork.org/users/559356
-// @version      1.0.1
-// @description  Randomize favorite chapters
+// @version      1.0.2
+// @description  Randomizes chapters on the favorites page.
 // @author       Aidan
 // @match        https://www.fakku.net/users/*/favorites*
 // @grant        GM.xmlHttpRequest
@@ -10,8 +10,7 @@
 
 var pageMeta = document.getElementsByClassName("pagination-2020");
 
-if (pageMeta.length > 0)
-{
+if (pageMeta.length > 0) {
     // Button icon made by mavadee (https://www.flaticon.com/authors/mavadee) and modified to red (#AB2328)
     var buttonIcon = "https://lh3.googleusercontent.com/pw/ACtC-3eY8JlZRL8Ohtkfip_eRIV1MJMS7IrSGNsNuflm-uBY1K1nTE-UbJK3lCwBehPHUe2vzNaU-11CEaWKgrqZGb_aqmWeE_5zrM2Y40CwA9_HlaDfA8yGB3XxSVHaMxobEH8MQN8awefblwPDqjTBIVF_=s512-no?authuser=1?.jpg";
 
@@ -48,8 +47,7 @@ if (pageMeta.length > 0)
     if (currentPage > lastPage) lastPage = currentPage;
 }
 
-function randomizeFavorites()
-{
+function randomizeFavorites() {
     var chapterCounter = 0;
     var log = "";
 
@@ -57,21 +55,17 @@ function randomizeFavorites()
     var currentGridContent = currentTabContent.getElementsByClassName("grid-content page-100")[0];
     var currentChapters = currentGridContent.getElementsByClassName("grid-block");
 
-    for (var i = 0; i < currentChapters.length; i++)
-    {
+    for (var i = 0; i < currentChapters.length; i++) {
         var pageInt = Math.ceil(Math.random() * lastPage);
         var url = currentUrl.replace(/\/favorites.*/g, "/favorites/page/" + pageInt);
 
-        GM.xmlHttpRequest
-        ({
+        GM.xmlHttpRequest({
             method: "GET",
             url: url,
-            onload: function(response)
-            {
+            onload: function(response) {
                 var loopCounter = 0;
 
-                do
-                {
+                do {
                     var doc = parser.parseFromString(response.responseText, "text/html");
                     var tabContent = doc.getElementsByClassName("tab-content active")[0];
                     var gridContent = tabContent.getElementsByClassName("grid-content page-100")[0];
