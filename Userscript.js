@@ -4,6 +4,7 @@
 // @version      1.0.3
 // @description  Randomizes chapters on the favorites page.
 // @author       Aidan
+// @license      Unlicense
 // @match        https://www.fakku.net/users/*/favorites*
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
